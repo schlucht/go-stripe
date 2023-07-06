@@ -51,7 +51,8 @@
         const payButton = document.getElementById('pay-button');
         const processing = document.getElementById("processing-payment");
 
-        stripe = Stripe('pk_test_51NJZOaAyXdxpP49B1kzBgfW9EK2YaGNtLKp2Ru4TRfugIzlIdtiGznzUOIY07w5IMFIiD1WGzV36HMBSGVLJJgCk00javhsPEb');
+          console.log({{index .StringMap "published_key"}})
+        stripe = Stripe("{{index .StringMap "published_key"}}")
 
         function hidePayButton() {
             payButton.classList.add('d-none');
@@ -103,7 +104,7 @@
             body: JSON.stringify(payload),
           }
 
-          fetch("http://localhost:4001/api/payment-intent", requestOptions)
+          fetch("{{.API}}/api/payment-intent", requestOptions)
               .then(response => response.text())
               .then(response => {
                 let data
