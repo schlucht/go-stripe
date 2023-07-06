@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+  <style type="text/css">
+    #aussen{fill:rgb(255,165,0);stroke:black;stroke-width:2;}
+    #innen{fill:yellow;stroke-width:1.5;stroke:brown}
+    .kreuz{fill:rgb(165,42,42)}
+    #ogram{fill:rgb(210,140,50);font-size:130pt;font-family:serif;
+            font-weight:bold;stroke:rgb(150,200,50);stroke-width:1; }
+    .dreieck{stroke-width:20; stroke:rgb(255,255,255);fill:none;}
+</style>
+  <circle id="aussen" cx="250" cy="250" r="248"/>
+  <circle id="innen" cx="250" cy="250" r="230"/>
+  <path class="dreieck" d="M425 365 L75 365 L255 42 Z"/>
+  <rect class="kreuz" x="230" y="38" width="40" height="420"/>
+  <rect class="kreuz" x="90" y="120" width="335" height="40"/>
+  <text id="ogram" x="135 275" y="355" style="white-space: pre;">JL</text>  
+</svg>

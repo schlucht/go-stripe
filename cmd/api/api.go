@@ -50,7 +50,7 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4001, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application enviroment { develompen | production}")
-	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch4:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
+	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch1:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
 	flag.Parse()
 
 	cfg.stripe.key = os.Getenv("STRIPE_KEY")

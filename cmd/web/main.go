@@ -56,7 +56,7 @@ func main() {
 	flag.StringVar(&cfg.api, "api", "http://localhost:4001", "URL to API")
 	flag.StringVar(&cfg.stripe.key, "stripe_key", "pk_test_51NJZOaAyXdxpP49B1kzBgfW9EK2YaGNtLKp2Ru4TRfugIzlIdtiGznzUOIY07w5IMFIiD1WGzV36HMBSGVLJJgCk00javhsPEb", "Stripe Key") //os.Getenv("STRIPE_KEY")
 
-	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch4:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
+	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch1:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
 
 	flag.Parse()
 
