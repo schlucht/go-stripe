@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"myapp/internal/driver"
+	"myapp/internal/models"
 	"net/http"
 	"os"
 	"time"
@@ -30,6 +31,7 @@ type application struct {
 	infoLog  *log.Logger
 	errorLog *log.Logger
 	version  string
+	DB models.DBModel
 }
 
 func (app *application) serve() error {
@@ -50,7 +52,7 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4001, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application enviroment { develompen | production}")
-	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch1:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
+	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch5:Schlucht6@tcp(db55.hostpark.net)/schmidschluch5?parseTime=true", "DB connect String")
 	flag.Parse()
 
 	cfg.stripe.key = os.Getenv("STRIPE_KEY")
@@ -70,6 +72,7 @@ func main() {
 		infoLog:  infoLog,
 		errorLog: errorLog,
 		version:  version,
+		DB: models.DBModel{DB: conn},
 	}
 
 	err = app.serve()

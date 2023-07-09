@@ -2,7 +2,7 @@ STRIPE_KEY=pk_test_51NJZOaAyXdxpP49B1kzBgfW9EK2YaGNtLKp2Ru4TRfugIzlIdtiGznzUOIY0
 STRIPE_SECRET=sk_test_51NJZOaAyXdxpP49B9HxMQsBwPMzqIKBRpv3cH4JFl1xEKRzfqBY8W3xKYEaAqkUmtn3RQUrCgESQKfZDa1QA3YOs007GqnxEu9
 GOSTRIPE_PORT=4000
 API_PORT=4001
-DSN=schmidschluch4:Schlucht6@tcp(db8.hostpark.net)/schmidschluch4
+DSN=schmidschluch5:Schlucht6@tcp(db8.hostpark.net)/schmidschluch5?parseTime=true
 ## build: builds all binaries
 build: clean build_front build_back
 	@printf "All binaries built!\n"

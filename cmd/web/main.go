@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"myapp/internal/driver"
+	"myapp/internal/models"
 	"net/http"
 	"os"
 	"time"
@@ -33,6 +34,7 @@ type application struct {
 	errorLog      *log.Logger
 	templateCache map[string]*template.Template
 	version       string
+	DB            models.DBModel
 }
 
 func (app *application) serve() error {
@@ -56,12 +58,12 @@ func main() {
 	flag.StringVar(&cfg.api, "api", "http://localhost:4001", "URL to API")
 	flag.StringVar(&cfg.stripe.key, "stripe_key", "pk_test_51NJZOaAyXdxpP49B1kzBgfW9EK2YaGNtLKp2Ru4TRfugIzlIdtiGznzUOIY07w5IMFIiD1WGzV36HMBSGVLJJgCk00javhsPEb", "Stripe Key") //os.Getenv("STRIPE_KEY")
 
-	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch1:Schlucht6@tcp(db55.hostpark.net)/schmidschluch1", "DB connect String")
+	flag.StringVar(&cfg.db.dsn, "dsn", "schmidschluch5:Schlucht6@tcp(db8.hostpark.net)/schmidschluch5?parseTime=true", "DB connect String")
 
 	flag.Parse()
 
 	cfg.stripe.key = "pk_test_51NJZOaAyXdxpP49B1kzBgfW9EK2YaGNtLKp2Ru4TRfugIzlIdtiGznzUOIY07w5IMFIiD1WGzV36HMBSGVLJJgCk00javhsPEb" //os.Getenv("STRIPE_KEY")
-	cfg.stripe.secret = os.Getenv("STRIPE_SECRET")
+	cfg.stripe.secret = "sk_test_51NJZOaAyXdxpP49B9HxMQsBwPMzqIKBRpv3cH4JFl1xEKRzfqBY8W3xKYEaAqkUmtn3RQUrCgESQKfZDa1QA3YOs007GqnxEu9"
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
@@ -80,6 +82,7 @@ func main() {
 		errorLog:      errorLog,
 		templateCache: tc,
 		version:       version,
+		DB:            models.DBModel{DB: conn},
 	}
 	//app.infoLog.Println(cfg.stripe.key)
 	//app.infoLog.Println(os.Getenv("STRIPE_KEY"))
