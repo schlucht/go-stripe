@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"flag"
 	"fmt"
 	"html/template"
@@ -10,10 +11,14 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/alexedwards/scs/v2"
 )
 
 const version = "1.0.0"
 const cssVersion = "1"
+
+var session *scs.SessionManager
 
 type config struct {
 	port int
@@ -35,6 +40,7 @@ type application struct {
 	templateCache map[string]*template.Template
 	version       string
 	DB            models.DBModel
+	Session       *scs.SessionManager
 }
 
 func (app *application) serve() error {
@@ -51,6 +57,8 @@ func (app *application) serve() error {
 }
 
 func main() {
+
+	gob.Register(map[string]interface{}{})
 	var cfg config
 
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
@@ -74,6 +82,10 @@ func main() {
 		return
 	}
 	defer conn.Close()
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+
 	tc := make(map[string]*template.Template)
 
 	app := &application{
@@ -83,6 +95,7 @@ func main() {
 		templateCache: tc,
 		version:       version,
 		DB:            models.DBModel{DB: conn},
+		Session:       session,
 	}
 	//app.infoLog.Println(cfg.stripe.key)
 	//app.infoLog.Println(os.Getenv("STRIPE_KEY"))

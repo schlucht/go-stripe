@@ -11,3 +11,5 @@ require (
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/stripe/stripe-go/v74 v74.25.0
 )
+
+require github.com/alexedwards/scs/v2 v2.5.1 // indirect
